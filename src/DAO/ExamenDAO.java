@@ -23,7 +23,7 @@ public class ExamenDAO extends MySQLConnection {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Examen examen = new Examen();
-                examen.setIdExamen(rs.getInt("id_examen"));  // Ajusta según tu BD
+                examen.setIdExamen(rs.getInt("id")); 
                 examen.setNomExamen(rs.getString("nombre"));
                 examen.setDescExamen(rs.getString("descripcion"));
                 examen.setCosto(rs.getDouble("costo"));
@@ -42,4 +42,5 @@ public class ExamenDAO extends MySQLConnection {
         }
         return examenes;
     }
+    
 }

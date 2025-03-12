@@ -6,18 +6,34 @@ import java.sql.SQLException;
 
 public class MySQLConnection {
     
-    private static final String URL = "jdbc:mysql://localhost:3306/nombre_de_tu_bd"; 
-    private static final String USER = "root"; 
-    private static final String PASSWORD = "tu_contraseña"; 
+    private static Connection con;
+    public  static final String puerto="3306";
+    public  static final String nomservidor="localhost";
+    public  static final String db="pruebabd";
+    private static final String driver = "com.mysql.jdbc.Driver";
+    private static final String user = "root";
+    private static final String pass = "";
+    private static final String url = "jdbc:mysql://"+nomservidor+":"+puerto+"/"+db;
 
     public Connection conectar() {
-        Connection conexion = null;
+        con = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection(URL, USER, PASSWORD);
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, user, pass);
+            if (con != null) {
+                System.out.println("Conexion establecida..");
+            }
         } catch (ClassNotFoundException | SQLException e) {
-            System.err.println("Error de conexión: " + e.getMessage());
+            System.out.println("Error al conectar " + e);
         }
-        return conexion;
+        return con;
     }
+    
+    public void desconectar() {
+        con = null;
+        if (con == null) {
+            System.out.println("Conexion terminada..");
+        }
+    }
+    
 }

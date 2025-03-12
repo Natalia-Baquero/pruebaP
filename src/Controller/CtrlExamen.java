@@ -19,7 +19,7 @@ public class CtrlExamen {
 
     public void Listar() {
         List<Examen> examenes = consultas.getAllExamenes();
-        DefaultTableModel model = (DefaultTableModel) vista.jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) vista.jtblistar.getModel();
         model.setRowCount(0); // Limpiar filas existentes
         model.setColumnIdentifiers(new Object[]{"ID", "Nombre", "Descripción", "Costo"});
 
