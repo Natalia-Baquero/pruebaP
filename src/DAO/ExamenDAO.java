@@ -43,4 +43,23 @@ public class ExamenDAO extends MySQLConnection {
         return examenes;
     }
     
+    public boolean addExamen(Examen examen) {
+        String sql = "INSERT INTO examen (id, nombre, descripcion, costo) VALUES (?, ?, ?, ?)";
+
+        try (Connection con = conectar();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, examen.getIdExamen());
+            ps.setString(2, examen.getNomExamen());
+            ps.setString(3, examen.getDescExamen());
+            ps.setDouble(4, examen.getCosto());
+            ps.execute();
+            return true;
+
+        } catch (SQLException e) {
+            System.err.println("Error al agregar examen: " + e.getMessage());
+            return false;
+        }
+    }
+    
 }
